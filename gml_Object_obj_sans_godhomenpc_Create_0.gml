@@ -1,0 +1,12 @@
+myinteract = 0
+lv = 1
+hp = 20
+flagid = 0
+attemptCountFlag = 0
+minutesFlag = 0
+secondsFlag = 0
+menuLength = 0
+genocide = 0
+phaseSelection = 0
+currentmenu = 0
+name = ""

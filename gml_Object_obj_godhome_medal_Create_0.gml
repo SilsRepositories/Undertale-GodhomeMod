@@ -1,0 +1,9 @@
+rank = 0
+image_speed = 0
+flagid = 0
+hardflagid = 0
+expertflagid = 0
+attemptCountFlag = 0
+scoreFlag = 0
+count = 0
+glow = 0
