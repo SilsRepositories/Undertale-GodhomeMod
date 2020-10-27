@@ -51,6 +51,10 @@ switch signid
         global.msg[0] = "* ASRIEL - Unfortunate Child/"
         global.msg[1] = "* Filled with determination.&  Just like you./%%"
         break
+    case 10:
+        global.msg[0] = "* MAD DUMMY - Angry Dummy/"
+        global.msg[1] = "* Hates you for nothing.&  Beat him up./%%"
+        break
 }
 
 mydialoguer = instance_create(0, 0, obj_dialoguer)

@@ -5,6 +5,8 @@ if (myinteract == 2)
     global.flag[12] = 0
     global.flag[13] = 0
     global.entrance = 0
+    global.border = 0
+    script_execute(SCR_BORDERSETUP)
     caster_free(-3)
     if (bossid == 999)
         room_goto(room_floweyx)
@@ -23,7 +25,10 @@ if (myinteract == 2)
             hp = 56
         }
     }
-    global.flag[502] = 2
+    global.mercy = 1
+    global.flag[7] = 0
+    global.flag[502] = 1
+    global.flag[504] = 0
     global.flag[500] = 1
     global.flag[509] = 0
     global.flag[333] = (flagid + 1000)
@@ -44,7 +49,10 @@ if (myinteract == 2)
     genocide = 0
 }
 if ((!control_check_pressed(0)) && (myinteract == 4))
+{
+    global.menucoord[0] = 0
     myinteract = 3
+}
 if (myinteract == 1)
 {
     currentmenu = 1

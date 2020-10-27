@@ -35,11 +35,12 @@ if ((instance_exists(obj_battler) == 0) && ((count > 2) && (global.flag[427] == 
         global.flag[427] = 0
         global.flag[428] = 0
         global.flag[429] = 0
+        global.flag[7] = 1
         global.msc = 0
         global.typer = 5
         global.facechoice = 0
         global.faceemotion = 0
-        maxScore = (1000 / (global.flag[175] + 2))
+        maxScore = (1000 / (global.flag[175] + 1))
         score = (round((maxScore - ((global.damageTaken * 1.4) + (global.hpRecovered * 3)))) * global.speedModifier)
         if (score > 1000)
             temp_value += 1

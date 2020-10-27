@@ -1,9 +1,13 @@
 var i;
-for (i = 0; i < 9; i++)
+for (i = 0; i < 10; i++)
 {
     medal = instance_create_depth((x - 8), (y - 80), -1000, obj_godhome_medal)
     medal.rank = global.flag[(324 + i)]
     medal.flagid = (324 + i)
+    if (medal.flagid >= 333)
+        medal.flagid += 11
+    if (medal.rank >= 333)
+        medal.rank += 11
     medal.attemptCountFlag = (334 + i)
     medal.scoreFlag = (290 + i)
     sign1 = instance_create_depth((175 + (120 * i)), 130, 100000, obj_godhome_sign)
@@ -167,6 +171,24 @@ for (i = 0; i < 9; i++)
         asriel.minutesFlag = 242
         asriel.secondsFlag = 243
         asriel.name = "Asriel"
+    }
+    if (i == 9)
+    {
+        maddummy = instance_create_depth(x, y, -1000, obj_sans_godhomenpc)
+        maddummy.sprite_index = spr_dummymad
+        maddummy.x -= (asriel.sprite_width / 2)
+        maddummy.y -= asriel.sprite_height
+        maddummy.image_speed = 0
+        maddummy.bossid = 45
+        maddummy.lv = 1
+        maddummy.hp = 20
+        maddummy.flagid = 344
+        maddummy.hardflagid = 175
+        maddummy.expertflagid = 176
+        maddummy.attemptCountFlag = 343
+        maddummy.minutesFlag = 244
+        maddummy.secondsFlag = 245
+        maddummy.name = "Mad Dummy"
     }
     x += 120
 }

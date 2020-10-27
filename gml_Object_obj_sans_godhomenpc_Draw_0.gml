@@ -6,6 +6,7 @@ if (myinteract == 3)
     {
         menuLength = 2
         scr_menucreate(120, 110, 120, (10 + (18 * menuLength)), menuLength, "NEUTRAL", "GENOCIDE")
+        hasHard = 1
     }
     if (currentmenu == 1)
     {
@@ -13,7 +14,6 @@ if (myinteract == 3)
         {
             menuLength = 4
             scr_menucreate(120, 110, 120, (10 + (18 * menuLength)), menuLength, "START", "RUN 1", "RUN 2", "ONE SHOT")
-            hasHard = 1
         }
         if (name == "Asriel")
         {
@@ -70,8 +70,8 @@ if (myinteract == 3)
             myinteract = 2
         else
         {
-            menuLength = 8
-            scr_menucreate(120, 60, 130, (10 + (18 * menuLength)), menuLength, "Faded Ribbon", "Manly Bandana", "Old Tutu", "Cloudy Glasses", "Stained Apron", "Cowboy Hat", "Heart Locket", "Temmie Armor")
+            menuLength = 9
+            scr_menucreate(120, 60, 130, (10 + (18 * menuLength)), menuLength, "Bandage", "Faded Ribbon", "Manly Bandana", "Old Tutu", "Cloudy Glasses", "Stained Apron", "Cowboy Hat", "Heart Locket", "Temmie Armor")
         }
     }
     if (currentmenu == 5)
@@ -97,25 +97,55 @@ if (myinteract == 3)
     {
         if (currentmenu == 4)
         {
+            global.adef = 0
             if (global.menucoord[0] == 0)
-                global.armor = 12
+                global.armor = 4
             if (global.menucoord[0] == 1)
-                global.armor = 15
+                global.armor = 12
             if (global.menucoord[0] == 2)
-                global.armor = 24
+                global.armor = 15
             if (global.menucoord[0] == 3)
-                global.armor = 44
+                global.armor = 24
             if (global.menucoord[0] == 4)
-                global.armor = 46
+                global.armor = 44
             if (global.menucoord[0] == 5)
-                global.armor = 48
+                global.armor = 46
             if (global.menucoord[0] == 6)
-                global.armor = 50
+                global.armor = 48
             if (global.menucoord[0] == 7)
+                global.armor = 50
+            if (global.menucoord[0] == 8)
                 global.armor = 64
+            if (global.armor == 4)
+                global.adef = 0
+            if (global.armor == 12)
+                global.adef = 3
+            if (global.armor == 15)
+                global.adef = 7
+            if (global.armor == 24)
+                global.adef = 10
+            if (global.armor == 44)
+                global.adef = 5
+            if (global.armor == 46)
+                global.adef = 11
+            if (global.armor == 48)
+            {
+                global.adef = 12
+                global.wstrength += 5
+            }
+            if (global.armor == 50)
+                global.adef = 15
+            if (global.armor == 53)
+                global.adef = 99
+            if (global.armor == 64)
+            {
+                global.adef = 20
+                global.wstrength += 10
+            }
         }
         if (currentmenu == 3)
         {
+            global.wstrength = 0
             if (global.menucoord[0] == 0)
                 global.weapon = 3
             if (global.menucoord[0] == 1)
@@ -132,6 +162,22 @@ if (myinteract == 3)
                 global.weapon = 49
             if (global.menucoord[0] == 7)
                 global.weapon = 51
+            if (global.weapon == 3)
+                global.wstrength = 0
+            if (global.weapon == 13)
+                global.wstrength = 3
+            if (global.weapon == 14)
+                global.wstrength = 5
+            if (global.weapon == 25)
+                global.wstrength = 7
+            if (global.weapon == 45)
+                global.wstrength = 2
+            if (global.weapon == 47)
+                global.wstrength = 10
+            if (global.weapon == 49)
+                global.wstrength = 12
+            if (global.weapon == 51)
+                global.wstrength = 15
         }
         if (currentmenu == 2)
         {
@@ -144,26 +190,35 @@ if (myinteract == 3)
         }
         if (currentmenu == 1)
         {
+            global.flag[175] = 0
+            global.flag[501] = 1
+            global.flag[504] = 0
+            global.tempvalue[31] = 0
             switch name
             {
                 case "Undyne":
                     global.flag[99] = global.menucoord[0]
+                    global.tempvalue[30] = global.menucoord[0]
                     global.flag[351] = 1500
                     if (global.flag[99] == 3)
                         global.flag[351] = 0
                     break
                 case "Asriel":
+                    global.flag[503] = 0
                     global.flag[505] = 0
                     global.flag[506] = 0
                     global.flag[507] = 0
                     global.flag[508] = 0
-                    global.flag[501] = 1
                     if (global.menucoord[0] == 0)
+                    {
+                        global.flag[501] = 1
                         bossid = 255
+                    }
                     if (global.menucoord[0] == 1)
                     {
                         bossid = 256
                         global.flag[501] = 0
+                        global.tempvalue[31] = 1
                         global.flag[175] = 2
                     }
                     if (global.menucoord[0] == 2)
@@ -199,7 +254,10 @@ if (myinteract == 3)
         if (currentmenu == 0)
         {
             if (global.menucoord[0] == 1)
+            {
                 genocide = 1
+                currentmenu = 1
+            }
             else
                 genocide = 0
         }
@@ -211,17 +269,18 @@ if (myinteract == 3)
     {
         if (currentmenu < 3)
         {
-            if ((currentmenu == 1) && (name != "Undyne"))
-                currentmenu = 0
+            if ((currentmenu == 2) && ((name != "Undyne") || ((name == "Undyne") && (genocide == 1))))
+                currentmenu = 1
             if ((currentmenu == 2) && ((name == "Asriel") || ((name == "Flowey") || ((name == "Mettaton") || ((name == "Sans") || (name == "Undyne"))))))
                 currentmenu = 2
-            else if ((name == "Toriel") || ((name == "Papyrus") || ((name == "Muffet") || (name == "Asgore"))))
+            else if ((name == "Toriel") || ((name == "Papyrus") || ((name == "Muffet") || ((name == "Asgore") || (name == "Mad Dummy")))))
                 currentmenu = 0
         }
         if (currentmenu == 0)
         {
             global.interact = 0
             myinteract = 0
+            genocide = 0
             for (i = 3; i < 12; i++)
                 global.menuchoice[i] = 0
         }
