@@ -5,9 +5,10 @@ for (i = 0; i < 10; i++)
     medal.rank = global.flag[(324 + i)]
     medal.flagid = (324 + i)
     if (medal.flagid >= 333)
+    {
         medal.flagid += 11
-    if (medal.rank >= 333)
-        medal.rank += 11
+        medal.rank = global.flag[((324 + i) + 11)]
+    }
     medal.attemptCountFlag = (334 + i)
     medal.scoreFlag = (290 + i)
     sign1 = instance_create_depth((175 + (120 * i)), 130, 100000, obj_godhome_sign)
@@ -29,6 +30,7 @@ for (i = 0; i < 10; i++)
         toriel.minutesFlag = 226
         toriel.secondsFlag = 227
         toriel.name = "Toriel"
+        toriel.hasHard = 1
     }
     if (i == 1)
     {
@@ -65,6 +67,7 @@ for (i = 0; i < 10; i++)
         undyne.minutesFlag = 230
         undyne.secondsFlag = 231
         undyne.name = "Undyne"
+        undyne.hasHard = 1
     }
     if (i == 3)
     {
@@ -119,6 +122,8 @@ for (i = 0; i < 10; i++)
         asgore.minutesFlag = 236
         asgore.secondsFlag = 237
         asgore.name = "Asgore"
+        asgore.hasHard = 1
+        asgore.hasExpert = 1
     }
     if (i == 6)
     {
@@ -135,6 +140,7 @@ for (i = 0; i < 10; i++)
         flowey.minutesFlag = 238
         flowey.secondsFlag = 239
         flowey.name = "Flowey"
+        flowey.hasHard = 1
     }
     if (i == 7)
     {
@@ -153,6 +159,7 @@ for (i = 0; i < 10; i++)
         sans.minutesFlag = 240
         sans.secondsFlag = 241
         sans.name = "Sans"
+        sans.hasHard = 1
     }
     if (i == 8)
     {
@@ -171,6 +178,7 @@ for (i = 0; i < 10; i++)
         asriel.minutesFlag = 242
         asriel.secondsFlag = 243
         asriel.name = "Asriel"
+        asriel.hasHard = 1
     }
     if (i == 9)
     {
@@ -192,3 +200,15 @@ for (i = 0; i < 10; i++)
     }
     x += 120
 }
+sign1 = instance_create_depth(1495, 130, 100000, obj_godhome_sign)
+sign1.signid = 11
+medal = instance_create_depth(1922, 100, -1000, obj_godhome_medal)
+medal.rank = global.flag[514]
+medal.flagid = 514
+medal.scoreFlag = 515
+medal.attemptCountFlag = 516
+medal = instance_create_depth(1922, 150, -1000, obj_godhome_medal)
+medal.rank = global.flag[517]
+medal.flagid = 517
+medal.scoreFlag = 518
+medal.attemptCountFlag = 519

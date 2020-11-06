@@ -6,7 +6,6 @@ if (myinteract == 3)
     {
         menuLength = 2
         scr_menucreate(120, 110, 120, (10 + (18 * menuLength)), menuLength, "NEUTRAL", "GENOCIDE")
-        hasHard = 1
     }
     if (currentmenu == 1)
     {
@@ -20,10 +19,8 @@ if (myinteract == 3)
             menuLength = 4
             scr_menucreate(120, 110, 120, (10 + (18 * menuLength)), menuLength, "PHASE 1", "PHASE 2", "PHASE 3", "PHASE 4")
         }
-        if ((name == "Mettaton") || (name == "Sans"))
+        if (name == "Mettaton" || name == "Sans")
         {
-            if (name == "Sans")
-                hasHard = 1
             menuLength = 2
             scr_menucreate(120, 110, 120, (10 + (18 * menuLength)), menuLength, "PHASE 1", "PHASE 2")
         }
@@ -31,7 +28,6 @@ if (myinteract == 3)
         {
             menuLength = 7
             scr_menucreate(120, 80, 120, (10 + (18 * menuLength)), menuLength, "PHASE 1", "PHASE 2", "PHASE 3", "PHASE 4", "PHASE 5", "PHASE 6", "FINALE")
-            hasHard = 1
         }
         if (menuLength == 0)
             currentmenu = 2
@@ -48,7 +44,7 @@ if (myinteract == 3)
             menuLength = 3
             scr_menucreate(120, 110, 120, (10 + (18 * menuLength)), menuLength, "NORMAL", "HARD", "EXPERT")
         }
-        if ((hasHard == 0) && (hasExpert == 0))
+        if (hasHard == 0 && hasExpert == 0)
         {
             menuLength = 1
             scr_menucreate(120, 110, 120, (10 + (18 * menuLength)), menuLength, "NORMAL")
@@ -57,7 +53,7 @@ if (myinteract == 3)
     if (currentmenu == 3)
     {
         if (name == "Flowey")
-            myinteract = 2
+            currentmenu = 5
         else
         {
             menuLength = 8
@@ -67,7 +63,7 @@ if (myinteract == 3)
     if (currentmenu == 4)
     {
         if (name == "Flowey")
-            myinteract = 2
+            currentmenu = 5
         else
         {
             menuLength = 9
@@ -75,6 +71,11 @@ if (myinteract == 3)
         }
     }
     if (currentmenu == 5)
+    {
+        menuLength = 2
+        scr_menucreate(120, 60, 130, (10 + (18 * menuLength)), menuLength, "Red Soul", "Blue Soul")
+    }
+    if (currentmenu == 6 || (currentmenu == 5 && name == "Undyne"))
         myinteract = 2
     if keyboard_check_pressed(vk_up)
     {
@@ -95,6 +96,14 @@ if (myinteract == 3)
     }
     if control_check_pressed(0)
     {
+        if (currentmenu == 5)
+        {
+            global.soulMode = 0
+            if (global.menucoord[0] == 1)
+                global.soulMode = 1
+            if (global.menucoord[0] == 2)
+                global.soulMode = 2
+        }
         if (currentmenu == 4)
         {
             global.adef = 0
@@ -211,7 +220,7 @@ if (myinteract == 3)
                     global.flag[508] = 0
                     if (global.menucoord[0] == 0)
                     {
-                        global.flag[501] = 1
+                        global.flag[501] = 0
                         bossid = 255
                     }
                     if (global.menucoord[0] == 1)
@@ -246,6 +255,7 @@ if (myinteract == 3)
                     break
                 case "Flowey":
                     global.fplot = (global.menucoord[0] + 1)
+                    global.tempvalue[29] = global.fplot
                     global.flag[175] = power(2, global.fplot)
                     break
             }
@@ -269,14 +279,14 @@ if (myinteract == 3)
     {
         if (currentmenu < 3)
         {
-            if ((currentmenu == 2) && ((name != "Undyne") || ((name == "Undyne") && (genocide == 1))))
+            if (currentmenu == 2 && (name != "Undyne" || (name == "Undyne" && genocide == 1)))
                 currentmenu = 1
-            if ((currentmenu == 2) && ((name == "Asriel") || ((name == "Flowey") || ((name == "Mettaton") || ((name == "Sans") || (name == "Undyne"))))))
+            if (currentmenu == 2 && (name == "Asriel" || name == "Flowey" || name == "Mettaton" || name == "Sans" || name == "Undyne"))
                 currentmenu = 2
-            else if ((name == "Toriel") || ((name == "Papyrus") || ((name == "Muffet") || ((name == "Asgore") || (name == "Mad Dummy")))))
+            else if (name == "Toriel" || name == "Papyrus" || name == "Muffet" || name == "Asgore" || name == "Mad Dummy")
                 currentmenu = 0
         }
-        if (currentmenu == 0)
+        if (currentmenu == 0 || ((currentmenu - 1) == 0 && name != "Undyne"))
         {
             global.interact = 0
             myinteract = 0
